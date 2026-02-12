@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Taxi Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+
+<div class="container">
+
+    <h2 style="text-align:center;">🚖 Taxi Details</h2>
+
+    {% for taxi in taxis %}
+        <div class="taxi-box">
+
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h3>Taxi-{{ taxi.taxi_id }}</h3>
+
+                {% if taxi.free_time <= current_time %}
+                    <span class="status available">🟢 Available</span>
+                {% else %}
+                    <span class="status busy">🔴 Busy</span>
+                {% endif %}
+            </div>
+
+            <p><strong>Total Earnings:</strong> Rs {{ taxi.total_earning }}</p>
+
+            <table>
+                <tr>
+                    <th>Customer</th>
+                    <th>Pickup</th>
+                    <th>Drop</th>
+                    <th>Pickup Time</th>
+                    <th>Drop Time</th>
+                    <th>Fare</th>
+                </tr>
+
+                {% for trip in taxi.trips %}
+                <tr>
+                    <td>{{ trip[0] }}</td>
+                    <td>{{ trip[1] }}</td>
+                    <td>{{ trip[2] }}</td>
+                    <td>{{ trip[3] }}</td>
+                    <td>{{ trip[4] }}</td>
+                    <td>{{ trip[5] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+    {% endfor %}
+
+    <br>
+    <a href="{{ url_for('home') }}">⬅ Back to Dashboard</a>
+    <br><br>
+    
+
+</div>
+
+</body>
+</html>

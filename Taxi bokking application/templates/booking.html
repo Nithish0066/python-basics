@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Taxi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>🚖 Book Taxi</h2>
+
+    <form action="/book" method="post">
+
+        <label>Customer ID</label>
+        <input type="text" name="customer_id" required>
+
+        <label>Pickup Location (A-F)</label>
+        <input type="text" name="pickup" required>
+
+        <label>Drop Location (A-F)</label>
+        <input type="text" name="drop" required>
+
+        <label>Pickup Time</label>
+        <input type="number" name="pickup_time" required>
+
+        <button type="submit">Book Taxi</button>
+
+    </form>
+    <br>
+
+<div style="text-align:center; margin-top:20px;">
+    <a href="{{ url_for('home') }}">
+        <button style="width:220px;">⬅ Go Back to Dashboard</button>
+    </a>
+</div>
+
+   
+
+
+</div>
+
+</body>
+</html>
