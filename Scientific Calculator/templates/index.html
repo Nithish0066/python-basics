@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="calculator">
+    <h2>Scientific Calculator</h2>
+
+    <form method="POST">
+        <input type="text" id="display" name="expression" value="{{ result }}" readonly>
+
+        <div class="buttons">
+
+          <!-- Row 1 -->
+<button type="button" onclick="addValue('(')">(</button>
+<button type="button" onclick="addValue(')')">)</button>
+<button type="button" class="backspace" onclick="backspace()">⌫</button>
+<button type="button" class="clear" onclick="clearDisplay()">AC</button>
+
+<!-- Row 2 -->
+<button type="button" class="function" onclick="addValue('sin(')">sin</button>
+<button type="button" class="function" onclick="addValue('cos(')">cos</button>
+<button type="button" class="function" onclick="addValue('tan(')">tan</button>
+<button type="button" class="function" onclick="addValue('sqrt(')">√</button>
+
+            <!-- Row 3 -->
+            <button type="button" onclick="addValue('7')">7</button>
+            <button type="button" onclick="addValue('8')">8</button>
+            <button type="button" onclick="addValue('9')">9</button>
+            <button type="button" class="operator" onclick="addValue('/')">÷</button>
+
+            <!-- Row 4 -->
+            <button type="button" onclick="addValue('4')">4</button>
+            <button type="button" onclick="addValue('5')">5</button>
+            <button type="button" onclick="addValue('6')">6</button>
+            <button type="button" class="operator" onclick="addValue('*')">×</button>
+
+            <!-- Row 5 -->
+            <button type="button" onclick="addValue('1')">1</button>
+            <button type="button" onclick="addValue('2')">2</button>
+            <button type="button" onclick="addValue('3')">3</button>
+            <button type="button" class="operator" onclick="addValue('-')">−</button>
+
+            <!-- Row 6 -->
+            <button type="button" onclick="addValue('0')">0</button>
+            <button type="button" onclick="addValue('00')">00</button>
+            <button type="button" onclick="addValue('.')">.</button>
+            <button type="button" class="operator" onclick="addValue('+')">+</button>
+
+            <!-- Row 7 -->
+            <button type="button" class="function" onclick="addValue('sqrt(')">√</button>
+            <button type="button" class="function" onclick="addValue('log(')">log</button>
+            <button type="button" class="function" onclick="addValue('pi')">π</button>
+            <button type="submit" class="equal">=</button>
+
+        </div>
+    </form>
+</div>
+
+<script>
+function addValue(value) {
+    document.getElementById("display").value += value;
+}
+
+function clearDisplay() {
+    document.getElementById("display").value = "";
+}
+
+function backspace() {
+    let display = document.getElementById("display");
+    display.value = display.value.slice(0, -1);
+}
+</script>
+
+</body>
+</html>
