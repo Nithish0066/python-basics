@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Edit Post</h2>
+
+<form method="POST">
+    <input type="text" name="title" value="{{ post.title }}"><br><br>
+    <textarea name="content">{{ post.content }}</textarea><br><br>
+    <input type="text" name="author" value="{{ post.author }}"><br><br>
+
+    <select name="category">
+        {% for cat in categories %}
+            <option value="{{ cat.id }}"
+                {% if cat.id == post.category_id %}selected{% endif %}>
+                {{ cat.name }}
+            </option>
+        {% endfor %}
+    </select><br><br>
+
+    <button type="submit">Update</button>
+</form>
+
+{% endblock %}

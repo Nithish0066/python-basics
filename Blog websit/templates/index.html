@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="GET">
+    <input type="text" name="search" placeholder="Search by title">
+    <button type="submit">Search</button>
+</form>
+
+<h3>Categories:</h3>
+{% for cat in categories %}
+    <a href="/?category={{ cat.id }}">{{ cat.name }}</a>
+{% endfor %}
+
+<hr>
+
+{% for post in posts %}
+    <h2><a href="/post/{{ post.id }}">{{ post.title }}</a></h2>
+    <p>{{ post.content[:100] }}...</p>
+    <small>{{ post.author }} | {{ post.date }} | {{ post.category_name }}</small>
+    <hr>
+{% endfor %}
+
+{% endblock %}

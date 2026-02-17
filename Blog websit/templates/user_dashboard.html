@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Header Section -->
+<div class="mb-5">
+    <h2 class="fw-bold">User Dashboard</h2>
+    <p class="text-light">
+        Welcome back, {{ current_user.username }} 
+    </p>
+</div>
+
+<!-- Category Filter -->
+<div class="mb-4" style="max-width: 300px;">
+    <form method="GET">
+        <select name="category"
+                class="form-select"
+                onchange="this.form.submit()">
+            <option value="">All Categories</option>
+            {% for cat in categories %}
+                <option value="{{ cat.id }}"
+                    {% if request.args.get('category') == cat.id|string %}selected{% endif %}>
+                    {{ cat.name }}
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+</div>
+
+<!-- Posts Grid -->
+<div class="row g-4">
+
+{% for post in posts %}
+    <div class="col-md-6">
+
+        <div class="post-card p-4 h-100">
+
+            <a href="/post/{{ post.id }}"
+               style="text-decoration:none; color:white;">
+                <h4 class="fw-bold mb-3">
+                    {{ post.title }}
+                </h4>
+            </a>
+
+            <p class="mb-4 text-light">
+                {{ post.content[:120] }}...
+            </p>
+
+            <div class="small text-secondary">
+                {{ post.author }} • {{ post.date }} • {{ post.category_name }}
+            </div>
+
+        </div>
+
+    </div>
+{% endfor %}
+
+</div>
+
+{% endblock %}
