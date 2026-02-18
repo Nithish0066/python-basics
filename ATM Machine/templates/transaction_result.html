@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transaction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Transaction Successful</h2>
+
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Balance</th>
+            <th>Date</th>
+        </tr>
+        <tr class="{{ t.type }}">
+            <td>{{ t.type }}</td>
+            <td>₹{{ t.amount }}</td>
+            <td>₹{{ t.balance }}</td>
+            <td>{{ t.time }}</td>
+        </tr>
+    </table>
+
+    <a href="/dashboard" class="btn">Back to Dashboard</a>
+</div>
+
+</body>
+</html>

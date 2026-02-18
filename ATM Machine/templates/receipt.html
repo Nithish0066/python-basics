@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ATM Receipt</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="receipt">
+    <h3>ATM RECEIPT</h3>
+    <p>Transaction Type: {{ receipt.type }}</p>
+    <p>Amount: ₹{{ receipt.amount }}</p>
+    <p>Date & Time: {{ receipt.time }}</p>
+    <p>Available Balance: ₹{{ balance }}</p>
+    <hr>
+    <p>Thank you for banking with us</p>
+    <a href="/dashboard" class="btn">Back to Dashboard</a>
+</div>
+</body>
+</html>

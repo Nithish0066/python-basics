@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>ATM Dashboard</h2>
+
+    <div class="balance-box">
+        <h3>Available Balance</h3>
+        <h1>₹{{ balance }}</h1>
+    </div>
+
+    <form action="/deposit" method="POST">
+        <input type="number" name="amount" placeholder="Enter Deposit Amount" required>
+        <button type="submit">Deposit</button>
+    </form>
+
+    <form action="/withdraw" method="POST">
+        <input type="number" name="amount" placeholder="Enter Withdraw Amount" required>
+        <button type="submit">Withdraw</button>
+    </form>
+<h3>Change PIN</h3>
+<form action="/change_pin" method="POST">
+    <input type="password" name="old_pin" placeholder="Old PIN" required>
+    <input type="password" name="new_pin" placeholder="New PIN" required>
+    <button>Change PIN</button>
+</form>
+    <a href="/history" class="btn">Transaction History</a>
+    <a href="/logout" class="btn logout">Logout</a>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Main Container */
+.container {
+    background: #1c2b36;
+    width: 380px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    text-align: center;
+    color: white;
+}
+
+/* Balance Box */
+.balance-box {
+    background: #243847;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.balance-box h3 {
+    color: #ccc;
+    font-size: 14px;
+}
+
+.balance-box h1 {
+    color: #00ffcc;
+}
+
+/* Inputs - FIXED WHITE PATCH */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: none;
+    background: #2f4454;     /* DARK background */
+    color: white;            /* Text white */
+}
+
+input::placeholder {
+    color: #bbb;             /* Placeholder light color */
+}
+
+/* Buttons */
+button, .btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #34495e;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover, .btn:hover {
+    background: #2c3e50;
+}
+
+/* Logout */
+.logout {
+    background: #e74c3c;
+}
+
+.logout:hover {
+    background: #c0392b;
+}
+/* Professional Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 13px;
+    background: #243847;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+thead {
+    background: #00b894;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+tbody tr {
+    border-bottom: 1px solid #444;
+}
+
+/* Highlight Deposit */
+tr.Deposit {
+    color: #00ff99;
+}
+
+/* Highlight Withdraw */
+tr.Withdraw {
+    color: #ff7675;
+}
