@@ -1,0 +1,27 @@
+
+file = open("number.txt", "w")
+
+for i in range(1, 21):
+    file.write(str(i) + "\n")
+
+file.close()
+
+file = open("number.txt", "r")
+
+print("Even numbers:")
+for line in file:
+    num = int(line)
+    if num % 2 == 0:
+        print(num)
+
+file.close()
+
+file = open("number.txt", "r")
+
+print("Odd numbers:")
+for line in file:
+    num = int(line)
+    if num % 2 != 0:
+        print(num)
+
+file.close()
