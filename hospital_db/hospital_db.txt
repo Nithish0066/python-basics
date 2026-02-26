@@ -1,0 +1,69 @@
+USE hospital;
+
+CREATE TABLE Department (
+    dept_id INT PRIMARY KEY AUTO_INCREMENT,
+    dept_name VARCHAR(100) NOT NULL
+);
+CREATE TABLE Doctor (
+    doctor_id INT PRIMARY KEY AUTO_INCREMENT,
+    doctor_name VARCHAR(100) NOT NULL,
+    specialization VARCHAR(100),
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES Department(dept_id)
+);
+
+CREATE TABLE Patient (
+    patient_id INT PRIMARY KEY AUTO_INCREMENT,
+    patient_name VARCHAR(100) NOT NULL,
+    age INT,
+    phone VARCHAR(15)
+);
+
+CREATE TABLE Appointment (
+    app_id INT PRIMARY KEY AUTO_INCREMENT,
+    patient_id INT,
+    doctor_id INT,
+    appointment_date DATE,
+    appointment_time TIME,
+    FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
+    FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
+);
+USE hospital;
+
+INSERT INTO Department (dept_name) VALUES
+('Cardiology'),
+('Neurology'),
+('Orthopedics');
+
+INSERT INTO Doctor (doctor_name, specialization, dept_id) VALUES
+('Dr. Raj', 'Heart Specialist', 1),
+('Dr. Meena', 'Brain Specialist', 2);
+
+INSERT INTO Patient (patient_name, age, phone) VALUES
+('Arun', 25, '9876543210'),
+('Priya', 30, '9123456780');
+
+INSERT INTO Appointment (patient_id, doctor_id, appointment_date, appointment_time) VALUES
+(1, 1, '2026-03-01', '10:00:00'),
+(2, 2, '2026-03-05', '12:30:00');
+
+SELECT A.app_id, P.patient_name, A.appointment_date, A.appointment_time
+FROM Appointment A
+JOIN Patient P ON A.patient_id = P.patient_id
+WHERE A.doctor_id = 1;
+
+SELECT D.dept_name, COUNT(DISTINCT A.patient_id) AS total_patients
+FROM Department D
+JOIN Doctor Doc ON D.dept_id = Doc.dept_id
+JOIN Appointment A ON Doc.doctor_id = A.doctor_id
+GROUP BY D.dept_name;
+
+SELECT *
+FROM Appointment
+WHERE appointment_date >= CURDATE();
+
+SHOW DATABASES;
+
+USE hospital;
+
+SHOW TABLES;
