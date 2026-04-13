@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>E-Commerce</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#acb9c6,#ccd3dc);
+    color: #1e293b;
+}
+.navbar {
+    background: linear-gradient(90deg,#0f172a,#1e293b);
+    padding: 15px 40px;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg,#4f46e5,#6366f1);
+    border: none;
+    border-radius: 10px;
+}
+
+.btn-danger {
+    border-radius: 10px;
+}
+.card {
+    background:#e2e8f0;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    padding: 10px;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.container-custom {
+    padding: 50px;
+}
+
+.dropdown-menu {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.form-control, .form-select, textarea {
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 12px;
+}
+
+.form-control:focus,
+.form-select:focus,
+textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 0.1rem rgba(99,102,241,0.25);
+}
+
+.filter-btn {
+    background: linear-gradient(135deg, #6366f1, #c8c7e0);
+    border: none;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: 0.3s ease;
+    box-shadow: 0 8px 20px rgba(99,102,241,0.3);
+}
+
+.filter-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(79,70,229,0.4);
+}
+/* Cart Card */
+.cart-card {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+.cart-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Cart Image */
+.cart-img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* Remove Button */
+.remove-btn {
+    background: linear-gradient(135deg,#ef4444,#dc2626);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.remove-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(220,38,38,0.4);
+}
+
+/* Checkout Button */
+.checkout-btn {
+    background: linear-gradient(135deg,#6366f1,#4f46e5);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Back Button */
+.back-btn {
+    background: #94a3b8;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+}
+
+/* Total Box */
+.cart-total-box {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+
+/* Empty Cart */
+.empty-cart {
+    padding: 60px;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+
+        <a class="navbar-brand text-white" href="{{ url_for('home') }}">E-Shop</a>
+
+        <div class="ms-auto">
+
+        {% if current_user.is_authenticated %}
+
+            <!-- USER MENU -->
+            {% if current_user.role == 'user' %}
+            <div class="dropdown d-inline me-3">
+                <button class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
+                    User Panel
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ url_for('home') }}">Dashboard</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('cart') }}">Cart</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('order_history') }}">Orders</a></li>
+                </ul>
+            </div>
+            {% endif %}
+
+            <!-- ADMIN MENU -->
+            {% if current_user.role == 'admin' %}
+            <div class="dropdown d-inline me-3">
+                <button class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown">
+                    Admin Panel
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ url_for('admin_dashboard') }}">Dashboard</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('add_product') }}">Add Product</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('admin_orders') }}">View Orders</a></li>
+                </ul>
+            </div>
+            {% endif %}
+
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+
+        {% endif %}
+
+        </div>
+    </div>
+</nav>
+
+<div class="container-custom">
+    {% block content %}{% endblock %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,7 +1,0 @@
-customer_id,age,gender,product,price,date
-101,25,Male,Shoes,2000,2025-01-10
-102,30,Female,Bag,1500,2025-01-12
-103,22,Male,Watch,3000,2025-02-05
-104,35,Female,Shoes,2500,2025-02-10
-105,28,Male,Phone,15000,2025-03-01
-106,40,Female,Bag,1800,2025-03-05

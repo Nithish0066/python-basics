@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">Your Orders</h2>
+
+{% if orders %}
+
+    {% for order in orders %}
+
+    <div class="card p-4 mb-4">
+
+        <!-- Order Header -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <h5 class="mb-1">Order #{{ order.id }}</h5>
+                <small class="text-muted">
+                    Placed on {{ order.created_at.strftime('%d %b %Y') if order.created_at }}
+                </small>
+            </div>
+
+            <div>
+                <span class="badge bg-success p-2">
+                    ₹ {{ order.total_amount }}
+                </span>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Order Items -->
+        <div class="row">
+            {% for item in order.items %}
+            <div class="col-md-6 mb-3">
+                <div class="d-flex align-items-center">
+
+                    {% if item.product.image %}
+                    <img src="{{ url_for('static', filename='uploads/' + item.product.image) }}"
+                         width="70" height="70"
+                         style="object-fit:cover; border-radius:12px;"
+                         class="me-3">
+                    {% endif %}
+
+                    <div>
+                        <h6 class="mb-1">{{ item.product.name }}</h6>
+                        <small class="text-muted">
+                            Category: {{ item.product.category }}
+                        </small>
+                        <br>
+                        <small>
+                            Quantity: {{ item.quantity }}
+                        </small>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+<div class="card p-5 text-center">
+    <h4>No Orders Yet</h4>
+    <p class="text-muted">You haven't placed any orders.</p>
+</div>
+
+{% endif %}
+
+{% endblock %}
