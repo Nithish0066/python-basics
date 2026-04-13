@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>User Login</h2>
+<form method="POST" class="card p-4">
+    <input name="username" class="form-control mb-2" placeholder="Username">
+    <input name="password" type="password" class="form-control mb-2" placeholder="Password">
+    <button class="btn btn-primary">Login</button>
+</form>
+
+<a href="/user-register">New User? Register Here</a>
+
+{% endblock %}

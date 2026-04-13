@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Admin Panel</h2>
+
+<a href="/create">Create New Post</a>
+
+<h3>Posts</h3>
+{% for post in posts %}
+    <p>{{ post.title }}
+        <a href="/edit/{{ post.id }}">Edit</a>
+        <a href="/delete/{{ post.id }}">Delete</a>
+    </p>
+{% endfor %}
+
+<h3>Add Category</h3>
+<form method="POST" action="/add_category">
+    <input type="text" name="name" placeholder="Category name">
+    <button type="submit">Add</button>
+</form>
+
+{% endblock %}

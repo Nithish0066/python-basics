@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main Container */
+.hero {
+    width: 100%;
+    max-width: 1100px;
+    padding: 40px;
+    color: #f1f5f9;
+}
+
+/* Navbar */
+.navbar {
+    margin-bottom: 40px;
+}
+
+.navbar h1 {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #38bdf8;
+}
+
+/* Search Section */
+.search-container {
+    margin-bottom: 40px;
+}
+
+.search-container form {
+    display: flex;
+    max-width: 500px;
+}
+
+.search-container input {
+    flex: 1;
+    padding: 14px;
+    border-radius: 10px 0 0 10px;
+    border: none;
+    font-size: 14px;
+    background: #334155;
+    color: white;
+}
+
+.search-container input::placeholder {
+    color: #94a3b8;
+}
+
+.search-container button {
+    padding: 14px 28px;
+    border: none;
+    background: #14b8a6;
+    color: white;
+    font-weight: 600;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-container button:hover {
+    background: #0d9488;
+}
+
+/* Weather Panel */
+.weather-panel {
+    background: #1e293b;
+    padding: 40px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+.left h2 {
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+.description {
+    text-transform: capitalize;
+    color: #cbd5e1;
+    margin-bottom: 20px;
+}
+
+.temp {
+    font-size: 72px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #38bdf8;
+}
+
+.feels {
+    color: #94a3b8;
+}
+
+/* Info Cards */
+.right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+.info-card {
+    background: #334155;
+    padding: 20px 30px;
+    border-radius: 15px;
+    text-align: center;
+    min-width: 180px;
+}
+
+.info-card span {
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+.info-card h3 {
+    margin-top: 6px;
+    font-size: 22px;
+    color: #f1f5f9;
+}

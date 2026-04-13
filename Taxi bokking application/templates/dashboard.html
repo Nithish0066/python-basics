@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+  
+</div>
+
+<div class="container">
+
+     <h2 style="text-align:center;">🚖 Taxi Booking Dashboard</h2>
+    <p style="text-align:center;">Welcome, {{ session['user'] }}</p>
+
+    <div class="summary-cards">
+        <div class="card">
+            <h3>Total Taxis</h3>
+            <p>{{ total_taxis }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Earnings</h3>
+            <p>₹ {{ total_earnings }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Available</h3>
+            <p>{{ available }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Busy</h3>
+            <p>{{ busy }}</p>
+        </div>
+    </div>
+
+
+    <div style="margin-top:40px; text-align:center;">
+
+        <a href="/book_page">
+            <button style="width:200px;">🚕 Book Taxi</button>
+        </a>
+
+        <a href="/display">
+            <button style="width:200px;">📊 View Taxi Details</button>
+        </a>
+
+        <a href="/logout">
+            <button style="width:200px; background:red; color:white;">
+              🔒 Logout
+            </button>
+        </a>
+
+    </div>
+
+    
+</div>
+
+
+</body>
+</html>

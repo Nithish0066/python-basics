@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Success</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>🎉 Booking Successful!</h2>
+
+    <div class="success-box">
+        <p><strong>Taxi Allocated:</strong> Taxi-{{ taxi }}</p>
+        <p><strong>Fare:</strong> Rs {{ fare }}</p>
+        <p><strong>Drop Time:</strong> {{ drop_time }}</p>
+    </div>
+
+    <br>
+<a href="{{ url_for('book_page') }}">
+
+
+    <button>Book Another Taxi</button>
+
+</a>
+
+    <br><br>
+    <a href="/home">Back to Dashboard</a>
+</div>
+
+</body>
+</html>

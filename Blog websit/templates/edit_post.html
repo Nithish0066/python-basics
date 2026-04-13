@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card p-4 shadow-sm">
+    <h3>Edit Blog Post</h3>
+
+    <form method="POST">
+
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" name="title"
+                   value="{{ post.title }}"
+                   class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Content</label>
+            <textarea name="content"
+                      rows="5"
+                      class="form-control"
+                      required>{{ post.content }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select name="category" class="form-control" required>
+                {% for cat in categories %}
+                    <option value="{{ cat.id }}"
+                        {% if cat.id == post.category_id %}selected{% endif %}>
+                        {{ cat.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="/admin-dashboard" class="btn btn-secondary">Cancel</a>
+
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>No Taxi Available</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>❌ No Taxi Available</h2>
+
+    <p>All taxis are currently busy. Please try again later.</p>
+
+    <br>
+
+    <a href="{{ url_for('home') }}">
+        <button>🔄 Try Again</button>
+    </a>
+
+</div>
+
+</body>
+</html>

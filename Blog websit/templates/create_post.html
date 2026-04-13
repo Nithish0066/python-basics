@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="p-5 rounded-4"
+     style="background: rgba(255,255,255,0.06); backdrop-filter: blur(10px);">
+
+    <h3 class="mb-4">Create New Blog</h3>
+
+    <form method="POST">
+
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text"
+                   name="title"
+                   class="form-control"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Author</label>
+            <input type="text"
+                   name="author"
+                   class="form-control"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select name="category"
+                    class="form-select"
+                    required>
+                {% for cat in categories %}
+                    <option value="{{ cat.id }}">
+                        {{ cat.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Content</label>
+            <textarea name="content"
+                      rows="5"
+                      class="form-control"
+                      required></textarea>
+        </div>
+
+        <button type="submit"
+                class="btn btn-primary px-4 rounded-pill">
+            Publish Blog
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
