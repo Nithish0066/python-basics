@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Professional Image Gallery</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .wrapper {
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+
+        .container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .panel {
+            flex: 0.5;
+            height: 420px;
+            border-radius: 20px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .panel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+
+        .panel h3 {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 20px;
+            z-index: 2;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .panel.active {
+            flex: 3;
+            transform: scale(1.05);
+        }
+
+        .panel.active h3 {
+            opacity: 1;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="wrapper">
+    <h1> Image Gallery</h1>
+
+    <div class="container" id="container"></div>
+
+    <div class="controls">
+        <button onclick="prev()">⬅ Prev</button>
+        <button onclick="next()">Next ➡</button>
+    </div>
+</div>
+
+<script>
+    const images = [
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+        "https://images.unsplash.com/photo-1491553895911-0055eca6402d",
+        "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+        "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
+        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+    ];
+
+    const container = document.getElementById("container");
+    let panels = [];
+    let currentIndex = 0;
+    let autoSlide;
+
+    // Create panels
+    images.forEach((src, i) => {
+        const panel = document.createElement("div");
+        panel.classList.add("panel");
+
+        const img = document.createElement("img");
+        img.src = src + "?auto=format&fit=crop&w=800&q=60";
+
+        const title = document.createElement("h3");
+        title.innerText = "Beautiful View " + (i + 1);
+
+        panel.appendChild(img);
+        panel.appendChild(title);
+        container.appendChild(panel);
+
+        panels.push(panel);
+
+        panel.addEventListener("click", () => {
+            setActive(i);
+            currentIndex = i;
+        });
+    });
+
+    function setActive(index) {
+        panels.forEach(p => p.classList.remove("active"));
+        panels[index].classList.add("active");
+    }
+
+    function next() {
+        currentIndex = (currentIndex + 1) % panels.length;
+        setActive(currentIndex);
+    }
+
+    function prev() {
+        currentIndex = (currentIndex - 1 + panels.length) % panels.length;
+        setActive(currentIndex);
+    }
+
+    function startAutoSlide() {
+        autoSlide = setInterval(next, 3000);
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlide);
+    }
+
+    // Pause on hover
+    container.addEventListener("mouseenter", stopAutoSlide);
+    container.addEventListener("mouseleave", startAutoSlide);
+
+    // Init
+    setActive(0);
+    startAutoSlide();
+
+</script>
+
+</body>
+</html>
